@@ -10,6 +10,9 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     cache: new InMemoryCache(),
     link: new HttpLink({
       uri: process.env.CONTENTFUL_GRAPHQL_ENDPOINT,
+      headers: {
+        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+      },
     }),
   });
 });

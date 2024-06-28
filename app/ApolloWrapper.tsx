@@ -10,7 +10,9 @@ import {
 function makeClient() {
   const httpLink = new HttpLink({
     uri: process.env.CONTENTFUL_GRAPHQL_ENDPOINT,
-    // fetchOptions: { cache: "no-store" },
+    headers: {
+      Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+    },
   });
 
   return new ApolloClient({

@@ -1,13 +1,14 @@
 "use client";
 
-import { useSuspenseQuery } from "@apollo/client";
 import Image from "next/image";
-import { GET_LINKS } from "./query";
+import { GET_LINKS, HeaderLinksQuery } from "./query";
+import { query } from "@/app/ApolloClient";
+import { useSuspenseQuery } from "@apollo/client";
 
 export default function Navbar() {
-  // const { data } = useSuspenseQuery(GET_LINKS);
+  const { data } = useSuspenseQuery<HeaderLinksQuery>(GET_LINKS)
 
-  // console.log(data)
+  console.log(data)
 
   return (
     <header className="site_header site_header_2">
@@ -218,10 +219,6 @@ export default function Navbar() {
                       <a className="nav-link" href="#" id="portfolio_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Portfolio
                       </a>
-                      <ul className="dropdown-menu" aria-labelledby="portfolio_submenu">
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="portfolio_details.html">Portfolio Details</a></li>
-                      </ul>
                     </li>
                     <li className="dropdown">
                       <a className="nav-link" href="#" id="services_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
