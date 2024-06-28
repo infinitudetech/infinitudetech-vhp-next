@@ -1,33 +1,17 @@
-@tailwind base;
+@import "/assets/css/bootstrap.min.css";
+@import "/assets/css/fontawesome.css";
+@import "/assets/css/animate.min.css";
+@import "/assets/css/swiper-bundle.min.css";
+@import "/assets/css/magnific-popup.min.css";
+@import "/assets/css/odometer.min.css";
+@import "/assets/css/style.css";
+
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
+/* @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
