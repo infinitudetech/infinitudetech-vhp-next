@@ -13,8 +13,6 @@ export default function Navbar() {
   const pathName = usePathname()
   const router = useRouter()
 
-  console.log(data.links)
-
   const isRouteActive = (isActive: boolean) => isActive ? 'active' : ''
 
   return (
