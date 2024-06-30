@@ -1,11 +1,13 @@
-import { Link } from "@/app/layout.types";
-import gql from "graphql-tag";
+import { Link } from '@/app/layout.types'
+import gql from 'graphql-tag'
 
 export interface HeaderLinks {
   home: Link;
   company: Link;
   services: Link;
   portfolio: Link;
+  fields: Link;
+  product: Link;
   pages: Link;
   contact: Link;
 }
@@ -22,4 +24,4 @@ export const GET_LINKS = gql`
         header
     }
   }
-`;
+`

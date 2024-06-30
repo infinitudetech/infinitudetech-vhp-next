@@ -1,14 +1,21 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { GET_LINKS, HeaderLinksQuery } from "./query";
-import { query } from "@/app/ApolloClient";
-import { useSuspenseQuery } from "@apollo/client";
+import Image from 'next/image'
+import { GET_LINKS, HeaderLinksQuery } from './query'
+import { useSuspenseQuery } from '@apollo/client'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import Badge from '../Badge'
 
 export default function Navbar() {
   const { data } = useSuspenseQuery<HeaderLinksQuery>(GET_LINKS)
+  const { home, company, portfolio, services, fields, product, contact, pages } = data?.links.header || {}
+  const pathName = usePathname()
+  const router = useRouter()
 
-  console.log(data)
+  console.log(data.links)
+
+  const isRouteActive = (isActive: boolean) => isActive ? 'active' : ''
 
   return (
     <header className="site_header site_header_2">
@@ -17,23 +24,23 @@ export default function Navbar() {
           <div className="row align-items-center">
             <div className="col-lg-3 col-5">
               <div className="site_logo">
-                <a className="site_link" href="contact.html">
-                  <Image width={200} height={200} src="/assets/images/site_logo/logo-white.svg" alt="Site Logo – Techco – IT Solutions & Technology, Business Consulting, Software Company Site Template" />
-                </a>
+                <Link className="site_link" href={home.href}>
+                  <Image width={200} height={200} src="/assets/images/site_logo/logo-white.svg" alt="Site Logo – Infinitude Tech – IT Solutions & Technology, Business Consulting, Software Company" />
+                </Link>
               </div>
             </div>
             <div className="col-lg-6 col-2">
               <nav className="main_menu navbar navbar-expand-lg">
                 <div className="main_menu_inner collapse navbar-collapse justify-content-lg-center" id="main_menu_dropdown">
                   <ul className="main_menu_list unordered_list justify-content-center">
-                    <li className="active">
-                      <a className="nav-link" href="index.html" role="button" aria-expanded="false">
-                        Home
-                      </a>
+                    <li className={isRouteActive(pathName === '/')}>
+                      <Link className="nav-link" href={home?.href} role="button">
+                        {home.label}
+                      </Link>
                     </li>
                     <li className="dropdown">
                       <a className="nav-link" href="#" id="company_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Company
+                        {company.label}
                       </a>
                       <div className="dropdown-menu mega_menu_wrapper" aria-labelledby="company_submenu">
                         <div className="container">
@@ -41,120 +48,31 @@ export default function Navbar() {
                             <div className="col-lg-9">
                               <div className="megamenu_pages_wrapper mb-5">
                                 <div className="row">
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="about.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_wifi.svg" alt="Wifi SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">About Us</small>
-                                      </span>
-                                      <span className="description mb-0">
-                                        Learn more about Techco
-                                      </span>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="pricing.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_dollar_2.svg" alt="Dollar SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Our Pricing</small>
-                                      </span>
-                                      <span className="description mb-0">
-                                        Streamlined Pricing
-                                      </span>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="portfolio.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_chart.svg" alt="Chart SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Portfolio</small>
-                                      </span>
-                                      <span className="description mb-0">
-                                        Explore our all overview
-                                      </span>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="portfolio_details.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_tag_2.svg" alt="Event Tag SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Portfolio Details</small>
-                                      </span>
-                                      <span className="description mb-0">
-                                        Explore our work overview
-                                      </span>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="team.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_user_2.svg" alt="User Check SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Team</small>
-                                      </span>
-                                      <span className="description mb-0">
-                                        We are friendly Join our team 
-                                      </span>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="team_details.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_users.svg" alt="Users SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Team Details</small>
-                                      </span>
-                                      <span className="description mb-0">
-                                        We are friendly Join our team 
-                                      </span>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="service.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_pen.svg" alt="Pen SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Services</small>
-                                      </span>
-                                      <small className="description mb-0">
-                                        Happy to help you!
-                                      </small>
-                                    </a>
-                                  </div>
-                                  <div className="col-lg-3 col-md-6">
-                                    <a className="iconbox_block_2" href="service_details.html">
-                                      <span className="icon_title_wrap">
-                                        <small className="iconbox_icon">
-                                          <Image width={200} height={200} src="/assets/images/icons/icon_pen.svg" alt="Pen SVG Icon" />
-                                        </small>
-                                        <small className="iconbox_title">Service Details</small>
-                                      </span>
-                                      <small className="description mb-0">
-                                        Happy to help you!
-                                      </small>
-                                    </a>
-                                  </div>
+                                  {company?.children?.map((link, index) => (
+                                    <div className="col-lg-3 col-md-6" key={index}>
+                                      <Link className="iconbox_block_2" href={link.href}>
+                                        <span className="icon_title_wrap">
+                                          <small className="iconbox_icon">
+                                            <Image width={200} height={200} src={`/assets/images/icons/${link.icon}`} alt={link.label} />
+                                          </small>
+                                          <small className="iconbox_title">{link.label}</small>
+                                        </span>
+                                        <span className="description mb-0">
+                                          {link.description}
+                                        </span>
+                                      </Link>
+                                    </div>
+                                  ))}
                                 </div>
                               </div>
                               <ul className="btns_group p-0 unordered_list justify-content-start">
                                 <li>
-                                  <a className="btn btn-primary" href="contact.html">
+                                  <Link className="btn btn-primary" href={contact.href}>
                                     <span className="btn_label" data-text="Free Consultation">Free Consultation</span>
                                     <span className="btn_icon">
                                       <i className="fa-solid fa-arrow-up-right"></i>
                                     </span>
-                                  </a>
+                                  </Link>
                                 </li>
                                 <li>
                                   <div className="review_short_info_2">
@@ -215,15 +133,15 @@ export default function Navbar() {
                         </div>
                       </div>
                     </li>
-                    <li className="dropdown">
-                      <a className="nav-link" href="#" id="portfolio_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Portfolio
-                      </a>
+                    <li className={isRouteActive(pathName.startsWith('/portfolio'))}>
+                      <Link className="nav-link" href={portfolio.href} role="button">
+                        {portfolio.label}
+                      </Link>
                     </li>
-                    <li className="dropdown">
-                      <a className="nav-link" href="#" id="services_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Services
-                      </a>
+                    <li className={`dropdown ${isRouteActive(pathName.startsWith('/services'))}`}>
+                      <Link className="nav-link" href={services.href} onClick={() => router.push(services.href)} id="services_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {services.label}
+                      </Link>
                       <div className="dropdown-menu mega_menu_wrapper p-0" aria-labelledby="services_submenu">
                         <div className="container">
                           <div className="row justify-content-lg-between">
@@ -231,162 +149,49 @@ export default function Navbar() {
                               <div className="row">
                                 <div className="col-lg-4">
                                   <div className="megamenu_widget">
-                                    <h3 className="megamenu_info_title">Services</h3>
+                                    <h3 className="megamenu_info_title">{services.label}</h3>
                                     <ul className="icon_list unordered_list_block">
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            IT Management Services
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            Data Tracking Security
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            Website Development
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            CRM Solutions and Design
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            UI/UX Design Services
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            Technology Solution
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service_details.html">
-                                          <span className="icon_list_text">
-                                            Software Development
-                                          </span>
-                                        </a>
-                                      </li>
+                                      {services.children?.map((service, idx) => (
+                                        <li key={idx}>
+                                          <Link href={service.href}>
+                                            <span className="icon_list_text">
+                                              {service.label}
+                                            </span>
+                                          </Link>
+                                        </li>
+                                      ))}
                                     </ul>
                                   </div>
                                 </div>
                                 <div className="col-lg-4">
                                   <div className="megamenu_widget">
-                                    <h3 className="megamenu_info_title">Our Fields</h3>
+                                    <h3 className="megamenu_info_title">{fields.label}</h3>
                                     <ul className="icon_list unordered_list_block">
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Healthcare
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Banks
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Logistics
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Supermarkets
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Industries
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Hotels
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="fields.html">
-                                          <span className="icon_list_text">
-                                            Fintech
-                                          </span>
-                                        </a>
-                                      </li>
+                                      {fields.children?.map((field, idx) => (
+                                        <li key={idx}>
+                                          <Link href={field.href}>
+                                            <span className="icon_list_text">
+                                              {field.label}
+                                            </span>
+                                          </Link>
+                                        </li>
+                                      ))}
                                     </ul>
                                   </div>
                                 </div>
                                 <div className="col-lg-4">
                                   <div className="megamenu_widget">
-                                    <h3 className="megamenu_info_title">Product</h3>
+                                    <h3 className="megamenu_info_title">{product.label}</h3>
                                     <ul className="icon_list unordered_list_block">
-                                      <li>
-                                        <a href="portfolio.html">
-                                          <span className="icon_list_text">
-                                            Case Studies
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="pricing.html">
-                                          <span className="icon_list_text">
-                                            Our Pricing
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service.html">
-                                          <span className="icon_list_text">
-                                            Features
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="about.html">
-                                          <span className="icon_list_text">
-                                            Overview
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="#!">
-                                          <span className="icon_list_text">
-                                            New Releases
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="service.html">
-                                          <span className="icon_list_text">
-                                            Solutions
-                                          </span>
-                                        </a>
-                                      </li>
+                                      {product.children?.map((prod, idx) => (
+                                        <li key={idx}>
+                                          <Link href="portfolio.html">
+                                            <span className="icon_list_text">
+                                              {prod.label}
+                                            </span>
+                                          </Link>
+                                        </li>
+                                      ))}
                                     </ul>
                                   </div>
                                 </div>
@@ -414,7 +219,7 @@ export default function Navbar() {
                                     </a>
                                   </li>
                                 </ul>
-                                <p className="career_link m-0">Looking for new career? <a href="#!">We’re Hiring</a></p>
+                                <p className="career_link m-0">Looking for new career? <Link href={contact.href}>We’re Hiring</Link></p>
                               </div>
                             </div>
                             <div className="col-lg-3">
@@ -422,12 +227,12 @@ export default function Navbar() {
                                 <h3>Computer Software</h3>
                                 <h4>Astarte Medical</h4>
                                 <Image width={200} height={200} src="/assets/images/case/case_image_4.webp" alt="Case Image" />
-                                <a className="btn" href="portfolio.html">
+                                <Link className="btn" href={portfolio.href}>
                                   <span className="btn_label" data-text="Read Case">Read Case</span>
                                   <span className="btn_icon">
                                     <i className="fa-solid fa-arrow-up-right"></i>
                                   </span>
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -436,21 +241,17 @@ export default function Navbar() {
                     </li>
                     <li className="dropdown">
                       <a className="nav-link" href="#" id="pages_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Pages
+                        {pages.label}
                       </a>
                       <ul className="dropdown-menu" aria-labelledby="pages_submenu">
-                        <li><a href="about.html">About Us</a></li>
-                        <li className="dropdown">
-                          <a className="nav-link" href="#" id="blog_submenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Blogs
-                          </a>
-                          <ul className="dropdown-menu" aria-labelledby="blog_submenu">
-                            <li><a href="blog.html">Our Blogs</a></li>
-                            <li><a href="blog_details.html">Blod details</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="contact.html">Help Center</a></li>
-                        <li><a href="#!">Careers <small className="badge bg-danger-subtle text-danger">We’re Hiring</small></a></li>
+                        {pages.children?.map((page, idx) => (
+                          <li key={idx}>
+                            <Link href={page.href}>
+                              {page.label}
+                              {page.badge && <Badge type="danger-subtle">{page.badge}</Badge>}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     </li>
                     <li><a href="contact.html">Contact</a></li>
