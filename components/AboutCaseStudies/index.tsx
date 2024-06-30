@@ -3,7 +3,7 @@ export default function AboutCaseStudies() {
     <section
       className="about_and_case_section section_space section_decoration bg-dark"
       style={{
-        backgroundImage: "url('assets/images/backgrounds/bg_image_2.webp')"
+        backgroundImage: 'url(\'assets/images/backgrounds/bg_image_2.webp\')'
       }}>
       <div className="container">
         <div className="row align-items-center justify-content-lg-between">
@@ -14,7 +14,7 @@ export default function AboutCaseStudies() {
               </div>
               <div
                 className="about_funfact_info"
-                style={{ backgroundImage: "url('assets/images/shapes/shape_bg_1.webp')" }}
+                style={{ backgroundImage: 'url(\'assets/images/shapes/shape_bg_1.webp\')' }}
               >
                 <div className="customer_count">
                   <ul className="unordered_list">
@@ -71,7 +71,7 @@ export default function AboutCaseStudies() {
               <div className="heading_block mb-0 text-white">
                 <div
                   className="heading_focus_text has_underline d-inline-flex"
-                  style={{ backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')" }}
+                  style={{ backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')' }}
                 >
                   About Us
                 </div>
@@ -90,7 +90,7 @@ export default function AboutCaseStudies() {
           <div className="heading_block text-center text-white">
             <div
               className="heading_focus_text has_underline d-inline-flex"
-              style={{ backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')" }}
+              style={{ backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')' }}
             >
               Case Studies
             </div>

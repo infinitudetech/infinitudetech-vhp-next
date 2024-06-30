@@ -1,5 +1,5 @@
-import Badge from "@/components/Badge";
-import PageBanner from "@/components/PageBanner";
+import Badge from '@/components/Badge'
+import PageBanner from '@/components/PageBanner'
 
 interface ServiceDetailsPageProps {
   params: {
@@ -179,5 +179,5 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
           </div>
         </section>
     </>
-  );
+  )
 }

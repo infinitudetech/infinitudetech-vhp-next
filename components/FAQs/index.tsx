@@ -5,7 +5,7 @@ export default function FAQs() {
         <div className="heading_block text-center">
           <div
             className="heading_focus_text has_underline d-inline-flex"
-            style={{ backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')" }}
+            style={{ backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')' }}
           >
             F.A.Q.
           </div>

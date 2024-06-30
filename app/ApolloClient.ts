@@ -1,9 +1,9 @@
-import { HttpLink } from "@apollo/client";
+import { HttpLink } from '@apollo/client'
 import {
   registerApolloClient,
   ApolloClient,
   InMemoryCache,
-} from "@apollo/experimental-nextjs-app-support";
+} from '@apollo/experimental-nextjs-app-support'
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
@@ -14,5 +14,5 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
         Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
       },
     }),
-  });
-});
+  })
+})

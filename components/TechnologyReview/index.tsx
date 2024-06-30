@@ -7,7 +7,7 @@ export default function TechnologyReview() {
                 <div className="heading_block">
                   <div
                     className="heading_focus_text has_underline d-inline-flex"
-                    style={{ backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')" }}
+                    style={{ backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')' }}
                   >
                     Working Process
                   </div>
@@ -92,7 +92,7 @@ export default function TechnologyReview() {
               <div className="heading_block text-center">
                 <div
                   className="heading_focus_text has_underline d-inline-flex"
-                  style={{ backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')" }}
+                  style={{ backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')' }}
                 >
                   Our Technologies
                 </div>

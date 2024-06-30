@@ -1,5 +1,5 @@
-import Badge from "@/components/Badge";
-import PageBanner from "@/components/PageBanner";
+import Badge from '@/components/Badge'
+import PageBanner from '@/components/PageBanner'
 
 interface BlogDetailsPageProps {
   params: {
@@ -529,5 +529,5 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
         </div>
       </section>
     </>
-  );
+  )
 }

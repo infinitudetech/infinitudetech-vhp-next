@@ -8,7 +8,7 @@ export default function Hero() {
               <div
                 className="heading_focus_text has_underline text-white d-inline-flex"
                 style={{
-                  backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')"
+                  backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')'
                 }}
               >
                 Perfect Company Solution

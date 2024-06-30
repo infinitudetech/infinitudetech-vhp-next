@@ -6,7 +6,7 @@ export default function Services() {
           <div
             className="heading_focus_text has_underline d-inline-flex"
             style={{
-              backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')"
+              backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')'
             }}
           >
             Our Services

@@ -8,7 +8,7 @@ export default function ContactUs() {
               <div className="heading_block">
                 <div
                   className="heading_focus_text has_underline d-inline-flex mb-3"
-                  style={{ backgroundImage: "url('assets/images/shapes/shape_title_under_line.svg')" }}
+                  style={{ backgroundImage: 'url(\'assets/images/shapes/shape_title_under_line.svg\')' }}
                 >
                   You Are Here
                 </div>

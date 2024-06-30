@@ -1,5 +1,5 @@
-import Badge from "@/components/Badge";
-import PageBanner from "@/components/PageBanner";
+import Badge from '@/components/Badge'
+import PageBanner from '@/components/PageBanner'
 
 interface TeamDetailsPageProps {
   params: {
@@ -192,5 +192,5 @@ export default function TeamDetailsPage({ params }: TeamDetailsPageProps) {
         </div>
       </section>
     </>
-  );
+  )
 }

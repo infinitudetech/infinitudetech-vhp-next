@@ -1,26 +1,26 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Script from "next/script";
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Script from 'next/script'
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
-import "./globals.css";
-import CallToAction from "@/components/CallToAction";
-import { ApolloWrapper } from "./ApolloWrapper";
+import './globals.css'
+import CallToAction from '@/components/CallToAction'
+import { ApolloWrapper } from './ApolloWrapper'
 
 export const metadata: Metadata = {
-  title: "Infinitude Tech",
-  description: "Where push comes to shove, you can count on us.",
+  title: 'Infinitude Tech',
+  description: 'Where push comes to shove, you can count on us.',
   keywords: '',
-  authors: { name: "Infinitude Tech", url: "https://infinitudetech.ai" },
+  authors: { name: 'Infinitude Tech', url: 'https://infinitudetech.ai' },
   icons: {
     shortcut: [{
-      url: "/assets/images/site_logo/favourite_icon_2.svg",
-      rel: "shortcut icon",
+      url: '/assets/images/site_logo/favourite_icon_2.svg',
+      rel: 'shortcut icon',
     }],
   },
-};
+}
 
 export default function RootLayout({
   children,
@@ -61,5 +61,5 @@ export default function RootLayout({
       <Script src="/assets/js/circularProgressBar.min.js" />
       <Script src="/assets/js/main.js" />
     </html>
-  );
+  )
 }

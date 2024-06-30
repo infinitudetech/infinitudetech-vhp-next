@@ -1,5 +1,5 @@
-import Badge from "@/components/Badge";
-import PageBanner from "@/components/PageBanner";
+import Badge from '@/components/Badge'
+import PageBanner from '@/components/PageBanner'
 
 export default function BlogPage() {
   return (
@@ -157,14 +157,14 @@ export default function BlogPage() {
             <button
               className="b1cc-swiper-button-prev"
               type="button"
-              style={{ backgroundImage: "url('assets/images/shapes/shape_arrow_right.svg')" }}
+              style={{ backgroundImage: 'url(\'assets/images/shapes/shape_arrow_right.svg\')' }}
             >
               <i className="fa-solid fa-angles-left"></i>
             </button>
             <button
               className="b1cc-swiper-button-next"
               type="button"
-              style={{ backgroundImage: "url('assets/images/shapes/shape_arrow_left.svg')" }}
+              style={{ backgroundImage: 'url(\'assets/images/shapes/shape_arrow_left.svg\')' }}
             >
               <i className="fa-solid fa-angles-right"></i>
             </button>

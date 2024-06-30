@@ -3,7 +3,7 @@ export default function TeamPage() {
     <>
       <section
         className="page_banner_section text-center"
-        style={{ backgroundImage: "url('assets/images/shapes/bg_pattern_4.svg')" }}
+        style={{ backgroundImage: 'url(\'assets/images/shapes/bg_pattern_4.svg\')' }}
       >
         <div className="container">
           <div className="heading_focus_text text-white">

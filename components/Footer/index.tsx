@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -278,7 +278,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer_bottom" style={{
-        backgroundImage: "url('assets/images/shapes/shape_space_6.svg')"
+        backgroundImage: 'url(\'assets/images/shapes/shape_space_6.svg\')'
       }}>
         <div className="container d-md-flex align-items-md-center justify-content-md-between">
           <p className="copyright_text m-0">

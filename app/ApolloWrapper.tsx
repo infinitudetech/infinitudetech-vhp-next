@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { HttpLink } from "@apollo/client";
+import { HttpLink } from '@apollo/client'
 import {
   ApolloNextAppProvider,
   ApolloClient,
   InMemoryCache,
-} from "@apollo/experimental-nextjs-app-support";
+} from '@apollo/experimental-nextjs-app-support'
 
 function makeClient() {
   const httpLink = new HttpLink({
@@ -13,12 +13,12 @@ function makeClient() {
     headers: {
       Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
     },
-  });
+  })
 
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: httpLink,
-  });
+  })
 }
 
 export function ApolloWrapper({ children }: React.PropsWithChildren) {
@@ -26,5 +26,5 @@ export function ApolloWrapper({ children }: React.PropsWithChildren) {
     <ApolloNextAppProvider makeClient={makeClient}>
       {children}
     </ApolloNextAppProvider>
-  );
+  )
 }

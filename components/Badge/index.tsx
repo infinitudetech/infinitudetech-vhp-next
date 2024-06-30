@@ -1,6 +1,6 @@
 interface BadgeProps {
   children: string | React.ReactNode
-  type: 'primary' | 'secondary' | 'success' | 'danger' | 'danger-subtle' | 'warning' | 'info' | 'light' | 'dark'
+  type?: 'primary' | 'secondary' | 'success' | 'danger' | 'danger-subtle' | 'warning' | 'info' | 'light' | 'dark'
 }
 
 export default function Badge({ children, type = 'secondary' }: BadgeProps) {
