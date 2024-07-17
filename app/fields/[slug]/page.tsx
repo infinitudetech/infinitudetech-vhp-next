@@ -1,32 +1,26 @@
-'use client'
-
 import Badge from '@/components/Badge'
 import PageBanner from '@/components/PageBanner'
-import { useSuspenseQuery } from '@apollo/client'
 import { FieldIdQuery, FieldQuery, GET_FIELD, GET_FIELD_ID } from './query'
-import { useParams } from 'next/navigation'
 import { renderHtml } from '@/utils/renderers'
 import { BLOCKS } from '@contentful/rich-text-types'
-import { padWithZeros } from '@/utils/helpers'
-import classNames from 'classnames'
-import { useState } from 'react'
+import ProcessesAccordion from '@/components/ProcessesAccordion'
+import ItemIndicator from '@/components/ProcessesAccordion/ItemIndicator'
+import ExpandedIndexProvider from '@/components/ProcessesAccordion/ExpandedIndexProvider'
+import { query } from '@/app/ApolloClient'
 
-type RouteParams = {
-  slug: string
+type FieldsPageProps = {
+  params: {
+    slug: string
+  }
 }
 
-export default function FieldsPage() {
-  const [expandedIdx, setExpandedIdx] = useState(0)
-  const params = useParams<RouteParams>()
-  const { data: fieldsData } = useSuspenseQuery<FieldIdQuery>(GET_FIELD_ID, {
-    variables: {
-      slug: params.slug
-    }
-  })
+export default async function FieldsPage({ params }: FieldsPageProps) {
+  const { data: fieldsData } = await query<FieldIdQuery>({ query: GET_FIELD_ID, variables: { slug: params.slug } })
 
   const { items } = fieldsData.fieldCollection || {}
 
-  const { data: fieldData } = useSuspenseQuery<FieldQuery>(GET_FIELD, {
+  const { data: fieldData } = await query<FieldQuery>({
+    query: GET_FIELD,
     variables: {
       id: items?.[0]?.sys.id
     },
@@ -36,7 +30,7 @@ export default function FieldsPage() {
 
   return (
     <>
-      <PageBanner title="Our Fields">
+      <PageBanner title={field.name}>
         Our
         <Badge>Fields 😍</Badge>
       </PageBanner>
@@ -89,49 +83,14 @@ export default function FieldsPage() {
 
           <h3 className="details_item_info_title">Service Process</h3>
           <div className="row mb-5 align-items-center justify-content-lg-between">
-            <div className="col-lg-6">
-              <div className="accordion" id="service_process_faq">
-                {field.processes.map((process, idx) => (
-                  <div className="accordion-item" key={idx}>
-                    <div
-                      className={classNames('accordion-button', { collapsed: idx > 0 })}
-                      onClick={() => setExpandedIdx(idx)}
-                      role="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={`#process_${idx}`}
-                      aria-expanded={idx === expandedIdx}
-                      aria-controls={`process_${idx}`}
-                    >
-                      {padWithZeros(idx + 1, 2)}. {process.title}
-                    </div>
-                    <div id={`process_${idx}`} className={classNames('accordion-collapse collapse', { show: idx === 0 })} data-bs-parent="#service_process_faq">
-                      <div className="accordion-body">
-                        <p className="m-0">
-                          {process.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div> 
-                ))}
+            <ExpandedIndexProvider>
+              <div className="col-lg-6">
+                <ProcessesAccordion processes={field.processes} />
               </div>
-            </div>
-            <div className="col-lg-5">
-              <ul className="content_layer_group unordered_list_block text-center">
-                {field.processes.map((process, idx) => (
-                  <li
-                    key={idx}
-                    className={classNames('accordion-button', { collapsed: idx === 0 })}
-                    role="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#process_${idx}`}
-                    aria-expanded={idx === expandedIdx}
-                    aria-controls={`process_${idx}`}
-                  >
-                    <span>{process.title}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <div className="col-lg-5">
+                <ItemIndicator processes={field.processes} />
+              </div>
+            </ExpandedIndexProvider>
           </div>
         </div>
       </section>

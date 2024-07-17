@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Script from 'next/script'
 
 import Navbar from '@/components/Navbar'
