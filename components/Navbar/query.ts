@@ -21,7 +21,55 @@ export interface HeaderLinksQuery {
 export const GET_LINKS = gql`
   query Links {
     links(id: "5wSNq34HGEvBudALxOO3ZD") {
-        header
+      header
+    }
+  }
+`
+
+export interface ServiceLink {
+  _id: string;
+  name: string;
+  slug: string;
+}
+
+export interface ServicesLinksQuery {
+  serviceCollection: {
+    items: ServiceLink[];
+  }
+}
+
+export const GET_SERVICES = gql`
+  query ServiceCollection {
+    serviceCollection {
+      items {
+        _id
+        name
+        slug
+      }
+    }
+  }
+`
+
+export interface FieldLink {
+  _id: string;
+  name: string;
+  slug: string;
+}
+
+export interface FieldsLinksQuery {
+  fieldCollection: {
+    items: ServiceLink[];
+  }
+}
+
+export const GET_FIELDS = gql`
+  query FieldCollection {
+    fieldCollection {
+      items {
+        _id
+        name
+        slug
+      }
     }
   }
 `

@@ -1,15 +1,19 @@
 'use client'
 
 import Image from 'next/image'
-import { GET_LINKS, HeaderLinksQuery } from './query'
+import { FieldsLinksQuery, GET_FIELDS, GET_LINKS, GET_SERVICES, HeaderLinksQuery, ServicesLinksQuery } from './query'
 import { useSuspenseQuery } from '@apollo/client'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import Badge from '../Badge'
 
 export default function Navbar() {
-  const { data } = useSuspenseQuery<HeaderLinksQuery>(GET_LINKS)
-  const { home, company, portfolio, services, fields, product, contact, pages } = data?.links.header || {}
+  const { data: linksCollection } = useSuspenseQuery<HeaderLinksQuery>(GET_LINKS)
+  const { data: servicesCollection } = useSuspenseQuery<ServicesLinksQuery>(GET_SERVICES)
+  const { data: fieldsCollection } = useSuspenseQuery<FieldsLinksQuery>(GET_FIELDS)
+  const { home, company, portfolio, services, fields, product, contact, pages } = linksCollection?.links.header || {}
+  const { items: serviceLinks } = servicesCollection?.serviceCollection || {}
+  const { items: fieldLinks } = fieldsCollection?.fieldCollection || {}
   const pathName = usePathname()
   const router = useRouter()
 
@@ -149,11 +153,11 @@ export default function Navbar() {
                                   <div className="megamenu_widget">
                                     <h3 className="megamenu_info_title">{services.label}</h3>
                                     <ul className="icon_list unordered_list_block">
-                                      {services.children?.map((service, idx) => (
-                                        <li key={idx}>
-                                          <Link href={service.href}>
+                                      {serviceLinks.map((service) => (
+                                        <li key={service._id}>
+                                          <Link href={`${services.href}/${service.slug}`}>
                                             <span className="icon_list_text">
-                                              {service.label}
+                                              {service.name}
                                             </span>
                                           </Link>
                                         </li>
@@ -165,11 +169,11 @@ export default function Navbar() {
                                   <div className="megamenu_widget">
                                     <h3 className="megamenu_info_title">{fields.label}</h3>
                                     <ul className="icon_list unordered_list_block">
-                                      {fields.children?.map((field, idx) => (
-                                        <li key={idx}>
-                                          <Link href={field.href}>
+                                      {fieldLinks.map((field) => (
+                                        <li key={field._id}>
+                                          <Link href={`${fields.href}/${field.slug}`}>
                                             <span className="icon_list_text">
-                                              {field.label}
+                                              {field.name}
                                             </span>
                                           </Link>
                                         </li>
