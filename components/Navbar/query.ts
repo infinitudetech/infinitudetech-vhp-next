@@ -12,6 +12,12 @@ export interface HeaderLinks {
   contact: Link;
 }
 
+export interface NavLink {
+  _id: string;
+  name: string;
+  slug: string;
+}
+
 export interface HeaderLinksQuery {
   links: {
     header: HeaderLinks;
@@ -26,15 +32,9 @@ export const GET_LINKS = gql`
   }
 `
 
-export interface ServiceLink {
-  _id: string;
-  name: string;
-  slug: string;
-}
-
 export interface ServicesLinksQuery {
   serviceCollection: {
-    items: ServiceLink[];
+    items: NavLink[];
   }
 }
 
@@ -50,15 +50,9 @@ export const GET_SERVICES = gql`
   }
 `
 
-export interface FieldLink {
-  _id: string;
-  name: string;
-  slug: string;
-}
-
 export interface FieldsLinksQuery {
   fieldCollection: {
-    items: ServiceLink[];
+    items: NavLink[];
   }
 }
 

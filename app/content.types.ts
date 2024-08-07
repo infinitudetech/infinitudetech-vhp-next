@@ -11,3 +11,12 @@ export type EntryId = {
     id: string;
   }
 }
+
+export type Media = {
+  url: string;
+  width: number;
+  height: number;
+  contentType: 'image/jpeg' | 'image/png';
+  title: string;
+  description: string;
+}
