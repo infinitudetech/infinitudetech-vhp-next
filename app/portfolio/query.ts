@@ -3,7 +3,7 @@ import { Project } from './[slug]/query'
 
 export interface ProjectsQuery {
   projectCollection: {
-    items: Pick<Project, '_id' | 'slug' | 'name' | 'thumbnail' | 'field' | 'industry'>[];
+    items: Pick<Project, '_id' | 'slug' | 'name' | 'title' | 'thumbnail' | 'field' | 'industry'>[];
   }
 }
 
